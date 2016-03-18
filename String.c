@@ -116,7 +116,7 @@ static void		append_c(struct String *this, char const *ap)
 {
   char			*newString = NULL;
 
-  if (ap != NULL && (newString = malloc(sizeof(char *) * (this->len + strlen(ap) + 1))) != NULL)
+  if (ap != NULL && (newString = malloc(sizeof(char) * (this->len + strlen(ap) + 1))) != NULL)
     {
       strcpy(newString, this->s);
       strcat(newString, ap);

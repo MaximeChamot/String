@@ -1,7 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "String.h"
+#include "string.h"
 
 /* Methods declaration */
 static void		assign_s(struct String *this, struct String const *s);
@@ -35,17 +35,20 @@ static size_t		countTokens(char *s, char separator);
 /* Constructor */
 void			StringInit(String *this, char const *s)
 {
-  if (s != NULL)
+  if (this != NULL)
     {
-      this->len = strlen(s);
-      this->s = strndup(s, this->len);
+      if (s != NULL)
+	{
+	  this->len = strlen(s);
+	  this->s = strndup(s, this->len);
+	}
+      else
+	{
+	  this->len = 0;
+	  this->s = NULL;
+	}
+      initMethodPtr(this);
     }
-  else
-    {
-      this->len = 0;
-      this->s = NULL;
-    }
-  initMethodPtr(this);
 }
 
 static void		initMethodPtr(struct String *this)
@@ -75,9 +78,9 @@ static void		initMethodPtr(struct String *this)
   this->substr = &substr;
 }
 
-struct String		*NewString(char const *s)
+struct String *		NewString(char const *s)
 {
-  struct String		*newString = NULL;
+  struct String *	newString = NULL;
 
   if ((newString = malloc(sizeof(struct String))) != NULL)
     StringInit(newString, s);
@@ -87,12 +90,15 @@ struct String		*NewString(char const *s)
 /* Destructor */
 void			StringDestroy(struct String *this)
 {
-  if (this->s != NULL)
+  if (this != NULL)
     {
-      free(this->s);
-      this->s = NULL;
+      if (this->s != NULL)
+	{
+	  free(this->s);
+	  this->s = NULL;
+	}
+      this->len = 0;
     }
-  this->len = 0;
 }
 
 /* Methods body */

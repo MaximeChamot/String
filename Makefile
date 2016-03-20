@@ -1,6 +1,6 @@
 NAME		= libstring.a
 
-SRCS		= String.c
+SRCS		= string.c
 
 OBJS		= $(SRCS:.c=.o)
 

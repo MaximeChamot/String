@@ -10,7 +10,7 @@ int		main()
   char		azerty[7] = "azerty";
   char		buf[100] = "";
   char		**tab;
-  char		str[20] = "julie,romain,maxime";
+  char		str[20] = "tata,tete,titi";
   struct String	*sStrings;
   size_t	i = 0;
 
@@ -178,13 +178,13 @@ int		main()
   // join_s
   printf("--- join_s ---\n");
   s1.join_s(&s1, ',', sStrings);
-  printf("[toto,julie,romain,maxime] | [%s]\n", s1.s);
+  printf("[toto,tata,tete,titi] | [%s]\n", s1.s);
   printf("\n");
 
   // substr
   printf("--- substr ---\n");
-  sStrings = s1.substr(&s1, -15, -5);
-  printf("%s\n", sStrings->c_str(sStrings));
+  sStrings = s1.substr(&s1, 5, 4);
+  printf("tata | %s\n", sStrings->c_str(sStrings));
   printf("\n");  
 
   // Destructor
